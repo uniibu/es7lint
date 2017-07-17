@@ -1,0 +1,35 @@
+{
+  "files": ["*.js"],
+  "output": "prefix",
+  "format": {
+    "escodegen": {
+      "format": {
+        "indent": {
+          "style": "    ",
+          "base": 0,
+          "adjustMultilineComment": false
+        },
+        "newline": "\n",
+        "space": " ",
+        "json": false,
+        "renumber": false,
+        "hexadecimal": false,
+        "quotes": "single",
+        "escapeless": false,
+        "compact": false,
+        "parentheses": true,
+        "semicolons": true,
+        "safeConcatenation": false
+  },
+      "comment": true
+    },
+    "esprima": {
+      "raw": true,
+      "tokens": true,
+      "range": true,
+      "comment": true,
+      "format": { "json": false }
+    },
+    "lebab": ["arrow", "for-of","for-each","arg-rest","arg-spread", "obj-shorthand","no-strict","exponent", "multi-var", "template","let","class", "default-param", "includes"]
+  }
+}

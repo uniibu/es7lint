@@ -1,0 +1,40 @@
+{
+  "name": "es7lint",
+  "version": "1.0.0",
+  "description": "A Javascript code syntax-fixer using the new features from ES6 and ES7",
+  "main": "es7lint.js",
+  "scripts": {
+    "test": "cd ./test && node ../es7lint.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uniibu/es7lint.git"
+  },
+  "keywords": [
+    "eslint",
+    "jshint",
+    "es-next",
+    "es7",
+    "fixer",
+    "syntax",
+    "code",
+    "es6",
+    "lebab",
+    "babel",
+    "esprima",
+    "escodegen"
+  ],
+  "author": "unibtc@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uniibu/es7lint/issues"
+  },
+  "homepage": "https://github.com/uniibu/es7lint#readme",
+  "devDependencies": {
+    "escodegen": "^1.8.1",
+    "esprima": "^4.0.0",
+    "globby": "^6.1.0",
+    "lebab": "^2.7.2",
+    "slash": "^1.0.0"
+  }
+}
