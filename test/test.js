@@ -3,7 +3,7 @@ const {promisify} = require('util');
 const exec = promisify(require('child_process').exec);
 describe('Check for successfull format', () => {
     it('should log Format Complete on success', async () => {
-        const {stdout, stderr} = await exec('node es7lint.js');
+        const {stdout, stderr} = await exec('./bin/index.js');
         var res = stdout.toString().trim();
         assert(res === 'Format Complete', `Error, value was ${ res }`);
     });

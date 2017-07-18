@@ -4,7 +4,7 @@
   "description": "A Javascript code syntax-fixer using the new features from ES6 and ES7",
   "main": "es7lint.js",
   "bin": { 
-    "es7lint": "./cli.js"
+    "es7lint": "./bin/index.js"
   },
   "engine": {
     "node": "8.x"
