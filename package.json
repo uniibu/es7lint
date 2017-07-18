@@ -1,6 +1,6 @@
 {
   "name": "es7lint",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "A Javascript code syntax-fixer using the new features from ES6 and ES7",
   "main": "es7lint.js",
   "bin": {
@@ -10,7 +10,7 @@
     "node": "8.x"
   },
   "scripts": {
-    "prepare":"node ./util/prep.js",
+    "prepare": "node ./util/prep.js",
     "test": "mocha test"
   },
   "repository": {
