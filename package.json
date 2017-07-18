@@ -33,15 +33,15 @@
     "url": "https://github.com/uniibu/es7lint/issues"
   },
   "homepage": "https://github.com/uniibu/es7lint#readme",
-  "devDependencies": {
+  "devDependencies": {    
+    "mocha": "^3.4.2"   
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
     "escodegen": "^1.8.1",
     "esprima": "^4.0.0",
     "globby": "^6.1.0",
     "lebab": "^2.7.2",
-    "mocha": "^3.4.2",
     "slash": "^1.0.0"
-  },
-  "dependencies": {
-    "colors": "^1.1.2"
   }
 }
