@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Javascript code syntax-fixer using the new features from ES6 and ES7",
   "main": "es7lint.js",
+  "bin": "es7lint.js",
   "engine": {
     "node": "8.x"
   },
