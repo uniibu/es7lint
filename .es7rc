@@ -28,8 +28,7 @@
       "tokens": true,
       "range": true,
       "comment": true,
-      "format": { "json": false }
     },
-    "lebab": ["arrow", "for-of","for-each","arg-rest","arg-spread", "obj-shorthand","no-strict","exponent", "multi-var", "template","let","class", "default-param", "includes"]
+    "lebab": ["arrow", "template", "for-of", "obj-shorthand", "multi-var", "default-param", "includes"]
   }
 }

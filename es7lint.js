@@ -2,6 +2,7 @@ const esprima = require('esprima');
 const escodegen = require('escodegen');
 const {promisify} = require('util');
 const colors = require('colors');
+const debug = require('debug');
 const fs = require('fs');
 const path = require('path');
 const lebab = require('lebab');
@@ -14,9 +15,21 @@ function errHandler(e, msg = e) {
     console.log('[es7lint]:'.cyan, msg.red);
     process.exit(0);
 }
-async function es7lint(file, opts, out) {
+async function codewriter(codeobj, out) {
+    let file = Object.keys(codeobj).shift();
+    let code = codeobj[file];
+    if (out == 'prefix') {
+        let parts = path.parse(file);
+        let fname = parts.name + prefix + parts.ext;
+        file = path.join(parts.dir, fname);
+    }
+    console.log('es7lint: writing', file);
+    return await fsWriteFile(file, code);
+}
+async function es7lint(file, opts) {
+    console.log('Linting file', file);
     try {
-        let oldcode = await fsReadFile(file, 'utf8');
+        let oldcode = await fsReadFile(file, 'utf8').toString();
         let prefix = '_es7';
         let syntax;
         syntax = esprima.parse(oldcode, opts.esprima);
@@ -26,14 +39,9 @@ async function es7lint(file, opts, out) {
         if (warnings.length > 0) {
             console.warn(warnings);
         }
-        if (out == 'prefix') {
-            let parts = path.parse(file);
-            let fname = parts.name + prefix + parts.ext;
-            file = path.join(parts.dir, fname);
-        }
-        await fsWriteFile(file, code);
+        return { file: code };
     } catch (e) {
-        errHandler(e);
+        errHandler(`Linter error ${ e } ${ file }`);
     }
 }
 async function getConfig() {
@@ -91,14 +99,21 @@ const run = async files => {
             if (files.length < 1) {
                 errHandler(`File ${ options.files } not found`);
             }
-            let tasks = files.map(async file => {
-                return await es7lint(file, options.format, options.output);
-            });
-            await Promise.all(tasks);
+            console.log('es7lint: Found these files', JSON.stringify(files));
+            let tasks = files.map(file => es7lint(file, options.format));
+            let coderesults = [];
+            for (let task of tasks) {
+                coderesults.push(await task);
+            }
+            let writetasks = coderesults.map(file => codewriter(file, options.out));
+            let writeresults = [];
+            for (let writetask of writetasks) {
+                writeresults.push(await writetask);
+            }
             console.log('Format Complete');
         }
     } catch (e) {
-        errHandler(e);
+        errHandler(`Run error: ${ e }`);
     }
 };
 module.exports = run;
