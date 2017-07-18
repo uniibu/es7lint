@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const program = require('commander');
 const pckjson = require('../package.json');
 const es7lint = require('../es7lint');
