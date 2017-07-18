@@ -2,33 +2,13 @@
   "files": ["./test/files/*.js"],
   "output": "inherit",
   "format": {
-    "escodegen": {
-      "format": {
-        "indent": {
-          "style": "    ",
-          "base": 0,
-          "adjustMultilineComment": false
-        },
-        "newline": "\n",
-        "space": " ",
-        "json": false,
-        "renumber": false,
-        "hexadecimal": false,
-        "quotes": "single",
-        "escapeless": false,
-        "compact": false,
-        "parentheses": true,
-        "semicolons": true,
-        "safeConcatenation": false
-  },
-      "comment": true
-    },
-    "esprima": {
-      "raw": true,
-      "tokens": true,
-      "range": true,
-      "comment": true,
-    },
+    "prettier": {
+      "printWidth": 80,
+      "tabWidth": 2,
+      "semi": true,
+      "singleQuote": true,
+      "bracketSpacing": true
+    }
     "lebab": ["arrow", "template", "for-of", "obj-shorthand", "multi-var", "default-param", "includes"]
   }
 }
