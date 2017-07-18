@@ -6,8 +6,23 @@
 
 A Javascript code syntax-fixer using the new features from ES6 and ES7.
 
+### Goal
+Why did you made this module, if people can just use Lebab or Prettier?
+- Lebab on its own is pretty nice, but the output formatting is not that readable specially on
+long arrays/objects.
+- Prettier itself is a beautifier which is used by some bigger companies, but is not a transpiler, it
+doesn't transform your code to ES6/ES7 syntax.
+- So instead of using individually to attain a better syntax, i made this.
+
 ### Requirements
 - Node V8.x and higher for Async/Await and Promisify features.
+
+### Features
+- Converts your codes to a readable syntax using the latest features from ES6/ES7
+- Customizable, you can set how you like you code to look.
+
+### Caveats
+- Since this module relies on both Lebab and Prettier, their `caveats` are also this module's caveats.
 
 ### Install
 ```js
@@ -21,7 +36,7 @@ npm install es7lint -g
 ### Options
 
 `.es7rc` is where es7lint reads the options. Simple create a `.es7rc` file on your application root and put all options on this file.
-`es7lint` uses [Esprima](https://www.npmjs.com/package/esprima), [Escodegen](https://www.npmjs.com/package/escodegen) and [Lebab](https://www.npmjs.com/package/lebab) to
+`es7lint` uses [Lebab](https://www.npmjs.com/package/lebab) and [Prettier](https://github.com/prettier/prettier) to
 format and fix your code syntax. All options available on the said modules are also available on es7lint. 
 
 `.es7rc` must have the following format:
@@ -30,11 +45,8 @@ format and fix your code syntax. All options available on the said modules are a
   "files": ["*.js"], /** glob pattern for files to format */
   "output": "inherit", /** set this to inherit or prefix */
   "format": {
-    "escodegen": {
-      /** escodegen options */
-    },
-    "esprima": {
-      /** esprima options */
+    "prettier": {
+      /** prettier options */
     },
     "lebab": [/** lebab options */]
   }
@@ -49,7 +61,7 @@ Is a glob pattern for all files that you want to format. This can be an array of
 - `prefix` will write the formatted code to the same directory with new filename prefixed with `_es7`. (`filename_es7.js`)
 
 #### `format`
-Is where all options pertaining to Esprima, Escodegen and Lebab goes to.
+Is where all options pertaining to Prettier and Lebab goes to.
 
 ### Usage
 
