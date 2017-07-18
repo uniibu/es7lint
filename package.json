@@ -1,6 +1,6 @@
 {
   "name": "es7lint",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A Javascript code syntax-fixer using the new features from ES6 and ES7",
   "main": "es7lint.js",
   "bin": {
