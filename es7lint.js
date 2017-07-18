@@ -83,8 +83,7 @@ function resolvePath(paths) {
 const run = async files => {
     try {
         const options = await getConfig();
-        
-        options.files = files.length > 0 ? files: options.files;
+        options.files = files.length > 0 ? files : options.files;
         if (options.files) {
             let globs = normalizePath(options.files);
             globs = globs.map(resolvePath);
