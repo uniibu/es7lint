@@ -54,12 +54,13 @@ Is where all options pertaining to Esprima, Escodegen and Lebab goes to.
 ### Usage
 
 If `.es7rc` is missing on your root directory, it will use the default options found on the module's folder
+If an argument is passed via cli(command) this will override the files set on your `.es7rc`
 
 ```js
 //local usage
-node ./node_modules/.bin/es7lint
+./node_modules/.bin/es7lint src/*.js scripts/**/*.js
 //global usage
-node es7lint
+es7lint src/*.js scripts/**/*.js
 ```
 
 ### Errors

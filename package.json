@@ -1,9 +1,11 @@
 {
   "name": "es7lint",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Javascript code syntax-fixer using the new features from ES6 and ES7",
   "main": "es7lint.js",
-  "bin": "es7lint.js",
+  "bin": { 
+    "es7lint": "./cli.js"
+  },
   "engine": {
     "node": "8.x"
   },
@@ -39,6 +41,7 @@
   },
   "dependencies": {
     "colors": "^1.1.2",
+    "commander": "^2.11.0",
     "escodegen": "^1.8.1",
     "esprima": "^4.0.0",
     "globby": "^6.1.0",

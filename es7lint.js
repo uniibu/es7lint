@@ -80,9 +80,10 @@ function resolvePath(paths) {
     }
     return mod + slash(resolveFilepath(paths));
 }
-(async () => {
+const run = async files => {
     try {
         const options = await getConfig();
+        options.files = files || options.files;
         if (options.files) {
             let globs = normalizePath(options.files);
             globs = globs.map(resolvePath);
@@ -99,4 +100,5 @@ function resolvePath(paths) {
     } catch (e) {
         errHandler(e);
     }
-})();
+};
+module.exports = run;
