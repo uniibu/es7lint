@@ -8,6 +8,7 @@ const glob = require('globby');
 const basedir = process.cwd();
 const fsReadFile = promisify(fs.readFile);
 const fsWriteFile = promisify(fs.writeFile);
+const fsStat = promisify(fs.stat);
 const slash = require('slash');
 function errHandler(e, msg = e) {
    console.log('[es7lint]:'.cyan, msg.red);
@@ -35,10 +36,22 @@ function prettyFormat(code, opts) {
       }
    });
 }
-
+async function isFileDir(f) {
+   try {
+      let stats = await fsStat(f);
+      return stats.isDirectory() || stats.isFile();
+   } catch (e) {
+      return false;
+   }
+}
 async function es7lint(file, opts) {
    try {
-      let oldcode = await fsReadFile(file, 'utf8');
+      let oldcode = '';
+      if (!await isFileDir(file)) {
+         oldcode = file;
+      } else {
+         oldcode = await fsReadFile(file, 'utf8');
+      }
       let prefix = '_es7';
       let syntax = {};
       let { code, warnings } = await lebab.transform(oldcode, opts.lebab);
@@ -94,34 +107,43 @@ function resolveFilepath(filepath) {
 }
 
 function resolvePath(paths) {
-   var mod = '';
+   let mod = '';
    if (paths[0] === '!') {
       mod = paths[0];
       paths = paths.slice(1);
    }
    return mod + slash(resolveFilepath(paths));
 }
+
 const run = async files => {
    try {
       const options = await getConfig();
-      options.files = files.length > 0 ? files : options.files;
-      if (options.files) {
-         let globs = normalizePath(options.files);
-         globs = globs.map(resolvePath);
-         let files = await glob(globs);
-         if (files.length < 1) {
-            errHandler(`File ${options.files} not found`);
+      if (Array.isArray(files)) {
+         options.files = files.length > 0 ? files : options.files;
+         if (options.files) {
+            let globs = normalizePath(options.files);
+            globs = globs.map(resolvePath);
+            let files = await glob(globs);
+            if (files.length < 1) {
+               errHandler(`File ${options.files} not found`);
+            }
+            let tasks = files.map(file => es7lint(file, options.format));
+            let coderesults = [];
+            for (let task of tasks) {
+               coderesults.push(await task);
+            }
+            let writetasks = coderesults.map(wfile => codewriter(wfile, options.out));
+            let writeresults = [];
+            console.log('Formatting...'.green);
+            for (let writetask of writetasks) {
+               writeresults.push(await writetask);
+            }
+            console.log('Format Complete'.cyan);
          }
-         let tasks = files.map(file => es7lint(file, options.format));
-         let coderesults = [];
-         for (let task of tasks) {
-            coderesults.push(await task);
-         }
-         let writetasks = coderesults.map(wfile => codewriter(wfile, options.out));
-         let writeresults = [];
-         console.log('Formatting...'.green);
-         for (let writetask of writetasks) {
-            writeresults.push(await writetask);
+      } else {
+         if (typeof files === 'string') {
+            let syntax = await es7lint(files, options.format);
+            return syntax;
          }
          console.log('Format Complete'.cyan);
       }
