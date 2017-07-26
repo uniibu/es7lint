@@ -2,6 +2,11 @@
   "files": ["./test/files/*.js"],
   "output": "inherit",
   "format": {
-    "lebab": ["arrow", "template", "for-of", "obj-shorthand", "multi-var", "default-param", "includes"]
+    "lebab": ["arrow", "template", "for-of", "obj-shorthand", "multi-var", "default-param", "includes"],
+    "standard": {
+		"rules": {
+  			"space-before-function-paren": [2, "never"]
+		}
+    }
   }
 }

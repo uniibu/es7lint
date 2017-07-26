@@ -7,7 +7,7 @@
 A Javascript code syntax-fixer using the new features from ES6 and ES7.
 
 ### Goal
-Why did you made this module, if people can just use Lebab or Prettier?
+Why did you made this module, if people can just use Lebab or Custom-standard?
 - Lebab on its own is pretty nice, but the output formatting is not that readable specially on
 long arrays/objects.
 - Prettier itself is a beautifier which is used by some bigger companies, but is not a transpiler, it
@@ -36,7 +36,7 @@ npm install es7lint -g
 ### Options
 
 `.es7rc` is where es7lint reads the options. Simple create a `.es7rc` file on your application root and put all options on this file.
-`es7lint` uses [Lebab](https://www.npmjs.com/package/lebab) and [Prettier](https://github.com/prettier/prettier) to
+`es7lint` uses [Lebab](https://www.npmjs.com/package/lebab) and [Custom-Standard](https://github.com/uniibu/custom-standard) to
 format and fix your code syntax. All options available on the said modules are also available on es7lint. 
 
 `.es7rc` must have the following format:
@@ -45,9 +45,6 @@ format and fix your code syntax. All options available on the said modules are a
   "files": ["*.js"], /** glob pattern for files to format */
   "output": "inherit", /** set this to inherit or prefix */
   "format": {
-    "prettier": {
-      /** prettier options */
-    },
     "lebab": [/** lebab options */]
   }
 }
@@ -61,7 +58,7 @@ Is a glob pattern for all files that you want to format. This can be an array of
 - `prefix` will write the formatted code to the same directory with new filename prefixed with `_es7`. (`filename_es7.js`)
 
 #### `format`
-Is where all options pertaining to Prettier and Lebab goes to.
+Is where all options pertaining to Lebab goes to.
 
 ### Usage
 

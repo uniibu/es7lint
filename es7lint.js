@@ -10,6 +10,7 @@ const fsWriteFile = promisify(fs.writeFile);
 const fsStat = promisify(fs.stat);
 const standard = require('customstandard');
 const slash = require('slash');
+const pkg = require('./package.json');
 function errHandler(e) {
   console.log('[es7lint]:'.cyan, e.red);
   process.exit(0);
@@ -124,10 +125,16 @@ function resolvePath(paths) {
   }
   return mod + slash(resolveFilepath(paths));
 }
-
+async function checkRules(opts) {
+  let rules = opts.standard ? opts.standard.rules : '';
+  pkg.customstandard = {'rules': rules};
+  let dir = path.join(__dirname, 'package.json');
+  return await fsWriteFile(dir, JSON.stringify(pkg, null, 2));
+}
 const run = async files => {
   try {
     const options = await getConfig();
+    await checkRules(options.format);
     if (Array.isArray(files)) {
       options.files = files.length > 0 ? files : options.files;
       if (options.files) {
