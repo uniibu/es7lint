@@ -45,7 +45,12 @@ format and fix your code syntax. All options available on the said modules are a
   "files": ["*.js"], /** glob pattern for files to format */
   "output": "inherit", /** set this to inherit or prefix */
   "format": {
-    "lebab": [/** lebab options */]
+    "lebab": [/** lebab options */],
+    "standard": {
+		"rules": {
+  			"space-before-function-paren": [2, "never"]
+		}
+    }
   }
 }
 ```
