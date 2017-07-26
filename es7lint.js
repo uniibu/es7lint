@@ -8,7 +8,7 @@ const basedir = process.cwd();
 const fsReadFile = promisify(fs.readFile);
 const fsWriteFile = promisify(fs.writeFile);
 const fsStat = promisify(fs.stat);
-const standard = require('semistandard');
+const standard = require('customstandard');
 const slash = require('slash');
 function errHandler(e) {
   console.log('[es7lint]:'.cyan, e.red);
