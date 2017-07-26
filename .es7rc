@@ -2,13 +2,6 @@
   "files": ["./test/files/*.js"],
   "output": "inherit",
   "format": {
-    "prettier": {
-      "printWidth": 80,
-      "tabWidth": 2,
-      "semi": true,
-      "singleQuote": true,
-      "bracketSpacing": true
-    },
     "lebab": ["arrow", "template", "for-of", "obj-shorthand", "multi-var", "default-param", "includes"]
   }
 }

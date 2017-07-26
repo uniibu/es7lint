@@ -1,6 +1,6 @@
 {
   "name": "es7lint",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "A Javascript code syntax-fixer using the new features from ES6 and ES7",
   "main": "es7lint.js",
   "bin": {
@@ -46,7 +46,7 @@
     "globby": "^6.1.0",
     "graceful-readlink": "^1.0.1",
     "lebab": "^2.7.3",
-    "prettier": "^1.5.3",
+    "semistandard": "^11.0.0",
     "slash": "^1.0.0"
   }
 }
