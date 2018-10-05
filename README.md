@@ -2,7 +2,7 @@
 
 [![Node version](https://img.shields.io/badge/Node-8.1.4-blue.svg)](http://nodejs.org/download/)
 [![Build Status](https://api.travis-ci.org/uniibu/es7lint.svg?branch=master)](https://travis-ci.org/uniibu/es7lint)
-[![David deps](https://david-dm.org/uniibu/es7lint.svg)](https://david-dm.org/uniibu/es7lint)
+[![David deps](https://david-dm.org/uniibu/es7lint.svg)](https://david-dm.org/uniibu/es7lint) [![Greenkeeper badge](https://badges.greenkeeper.io/uniibu/es7lint.svg)](https://greenkeeper.io/)
 
 A Javascript code syntax-fixer using the new features from ES6 and ES7.
 
